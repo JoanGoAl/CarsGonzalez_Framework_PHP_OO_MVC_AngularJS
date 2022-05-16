@@ -1,0 +1,3 @@
+backend/model/db.ini
+backend/utils/jwt.ini
+backend/utils/phpMailer.ini

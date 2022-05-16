@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<functions>
+    <function>
+        <name>view</name>
+        <uri>view</uri>
+    </function>
+    <function>
+        <name>validate_register</name>
+        <uri>validate_register</uri>
+    </function>
+    <function>
+        <name>register</name>
+        <uri>register</uri>
+    </function>
+    <function>
+        <name>login</name>
+        <uri>login</uri>
+    </function>
+    <function>
+        <name>data_user</name>
+        <uri>data_user</uri>
+    </function>
+    <function>
+        <name>logout</name>
+        <uri>logout</uri>
+    </function>
+    <function>
+        <name>validate_login</name>
+        <uri>validate_login</uri>
+    </function>
+    <function>
+        <name>send_verification_email</name>
+        <uri>send_verification_email</uri>
+    </function>
+</functions>
