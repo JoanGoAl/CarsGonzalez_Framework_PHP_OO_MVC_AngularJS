@@ -4,7 +4,19 @@ app.controller('controller_home', function($scope, $window, toastr, brands, cate
     $scope.list_categories = categories;
     $scope.list_bodywork = bodywork;
 
-    $scope.hola = () => {
-        toastr.success('Hola');
-    }
+    setTimeout(() => {
+        new Swiper('.swiper', {
+            loop: true,
+            direction: 'horizontal',
+            speed: 400,
+            slidesPerView: 3,
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            autoplay: {
+                delay: 3500
+            },
+        });
+    }, 0)
+
 });

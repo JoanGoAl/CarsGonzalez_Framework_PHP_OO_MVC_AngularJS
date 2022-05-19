@@ -1,6 +1,3 @@
-<!-- <h1>Esto es el home</h1>
-<button id="hola" ng-click="hola()">Hola</button> -->
-
 <div class="brand_color">
     <div class="container">
         <div class="row">
@@ -13,7 +10,47 @@
     </div>
 </div>
 <div class="brand"></div>
-<p>{{list_brands}}</p>
+<div class="container">
+    <div class="swiper row">
+        <div class="swiper-wrapper" id="logo">
+
+            <div class="swiper-slide m-slider__item" ng-repeat="item in list_brands">
+                <div class="m-card" id="{{ item.id_brand }}">
+                    <div class="m-card__header" ng-style="{'background-image':'url(frontend/{{ item.photo_brand }})'}"></div>
+                    <div class="m-card__body">{{ item.name_brand }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+<div class="brand_color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>Bodywork</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="brand"></div>
+<div class="container">
+    <div class="swiper row">
+        <div class="swiper-wrapper" id="logo">
+
+            <div class="swiper-slide m-slider__item" ng-repeat="item in list_bodywork">
+                <div class="m-card" id="{{ item.id_bodywork }}">
+                    <div class="m-card__header" ng-style="{'background-image':'url(frontend/{{ item.photo_bodywork }})'}"></div>
+                    <div class="m-card__body">{{ item.name_bodywork }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
 
 <div class="brand_color">
     <div class="container">
@@ -29,16 +66,12 @@
 <div class="brand"></div>
 <p>{{list_categories}}</p>
 
-<div class="brand_color">
+<div class="about">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <div class="titlepage">
-                    <h2>Bodywork</h2>
-                </div>
-            </div>
+
+
+
         </div>
     </div>
 </div>
-<div class="brand"></div>
-<p>{{list_bodywork}}</p>
