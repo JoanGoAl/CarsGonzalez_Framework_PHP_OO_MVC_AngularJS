@@ -1,10 +1,10 @@
 <?php
     require 'autoload.php';
 
-    $_POST = json_decode(file_get_contents('php://input'), true);
     ob_start();
     session_start();
-
+    $_POST = json_decode(file_get_contents('php://input'), true);
+    
     class router {
         private $uriModule;
         private $uriFunction;
