@@ -29,7 +29,8 @@
     height: 100%;
 }
 
-label {
+.form-login>label,
+.form-signup>label {
     color: red;
     font-size: 2.3em;
     justify-content: center;
@@ -41,13 +42,14 @@ label {
     transition: .5s ease-in-out;
 }
 
-input {
+.form-login>input,
+#container-register>input {
     width: 60%;
     height: 20px;
     background: #e0dede;
     justify-content: center;
     display: flex;
-    margin: 20px auto;
+    margin: auto;
     padding: 10px;
     border: none;
     outline: none;
@@ -146,4 +148,12 @@ button:hover {
 
 .div-socialLogin>i:hover {
     background-color: rgb(176, 176, 176);
+}
+
+#name-login,
+#passwd-login,
+#name-register,
+#passwd-register,
+#passwd2-register {
+    height: 30px;
 }

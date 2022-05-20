@@ -22,6 +22,9 @@ app.config(['$routeProvider', function($routeProvider, services) {
         }).when("/shop", {
             templateUrl: "frontend/module/shop/view/shop.html",
             controller: "controller_shop"
+        }).when("/login", {
+            templateUrl: "frontend/module/login/view/login.html",
+            // controller: "controller_shop"
         }).otherwise("/home", {
             redirectTo: '/home'
         });
