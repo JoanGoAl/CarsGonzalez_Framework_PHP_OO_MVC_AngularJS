@@ -24,7 +24,6 @@
         <div class="swiper-pagination"></div>
     </div>
 </div>
-
 <div class="brand_color">
     <div class="container">
         <div class="row">
@@ -40,7 +39,6 @@
 <div class="container">
     <div class="swiper row">
         <div class="swiper-wrapper" id="logo">
-
             <div class="swiper-slide m-slider__item" ng-repeat="item in list_bodywork">
                 <div class="m-card" id="{{ item.id_bodywork }}">
                     <div class="m-card__header" ng-style="{'background-image':'url(frontend/{{ item.photo_bodywork }})'}"></div>
@@ -51,7 +49,6 @@
         <div class="swiper-pagination"></div>
     </div>
 </div>
-
 <div class="brand_color">
     <div class="container">
         <div class="row">
@@ -64,13 +61,39 @@
     </div>
 </div>
 <div class="brand"></div>
-<p>{{list_categories}}</p>
-
 <div class="about">
     <div class="container">
-        <div class="row">
+        <div class="row" ng-repeat="item in list_categories">
 
+            <!-- OP 1 -->
+            <div ng-if="$index % 2 == 0" class="col-xl-5 col-lg-5 col-md-5 co-sm-l2">
+                <div class="about_img">
+                    <figure>
+                        <img src="frontend/{{item.photo_category}}" id="{{item.id_category}}" class="clicktoredirect categoryredirect">
+                    </figure>
+                </div>
+            </div>
+            <div ng-if="$index % 2 == 0" class="col-xl-7 col-lg-7 col-md-7 co-sm-l2">
+                <div class="about_box">
+                    <span>{{item.name_category}}</span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc efficitur odio sed risus eleifend, non pharetra lectus tempus. Morbi facilisis massa at consectetur vestibulum. Pellentesque finibus eleifend libero, eget laoreet.</p>
+                </div>
+            </div>
 
+            <!-- OP 2 -->
+            <div ng-if="$index % 2 == 1" class="col-xl-7 col-lg-7 col-md-7 co-sm-l2">
+                <div class="about_box_">
+                    <span>{{item.name_category}}</span>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc efficitur odio sed risus eleifend, non pharetra lectus tempus. Morbi facilisis massa at consectetur vestibulum. Pellentesque finibus eleifend libero, eget laoreet.</p>
+                </div>
+            </div>
+            <div ng-if="$index % 2 == 1" class="col-xl-5 col-lg-5 col-md-5 co-sm-l2">
+                <div class="about_img">
+                    <figure>
+                        <img src="frontend/{{item.photo_category}}" id="{{item.id_category}}" class="clicktoredirect categoryredirect">
+                    </figure>
+                </div>
+            </div>
 
         </div>
     </div>

@@ -1,4 +1,4 @@
-app.controller('controller_home', function($scope, $window, toastr, brands, categories, bodywork) {
+app.controller('controller_home', function($scope, brands, categories, bodywork) {
 
     $scope.list_brands = brands;
     $scope.list_categories = categories;
