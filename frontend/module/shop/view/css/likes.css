@@ -1,0 +1,82 @@
+#like-box {
+    /* z-index: auto; */
+    height: 50px;
+    width: 100px;
+    margin-top: 2px;
+    /* background-color: blue; */
+    position: relative;
+    margin: auto;
+    border: red 1px solid;
+    border-radius: 5px;
+    /* background-image: url('../images/likes/cor-like.png'); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*ESTILOS DE BOTON CENTRAL*/
+
+@-webkit-keyframes animar {
+    0% {
+        -webkit-transform: translate(0px, 0px);
+    }
+    10% {
+        -webkit-transform: translate(5px, 0px);
+    }
+    20% {
+        -webkit-transform: translate(0px, 0px);
+    }
+    30% {
+        -webkit-transform: translate(5px, 0px);
+    }
+    40% {
+        -webkit-transform: translate(0px, 0px);
+    }
+    50% {
+        -webkit-transform: translate(5px, 0px);
+    }
+    60% {
+        -webkit-transform: translate(0px, 0px);
+    }
+    70% {
+        -webkit-transform: translate(5px, 0px);
+    }
+    80% {
+        -webkit-transform: translate(0px, 0px);
+    }
+    90% {
+        -webkit-transform: translate(5px, 0px);
+    }
+    100% {
+        -webkit-transform: translate(0px, 0px);
+    }
+}
+
+.like {
+    -webkit-animation: animar .6s 1;
+}
+
+#like-box:hover {
+    background-color: red;
+}
+
+#like-box:hover .fa-heart {
+    color: white;
+}
+
+.fa-heart {
+    color: red;
+}
+
+.like {
+    background-color: red;
+}
+
+.like .fa-heart {
+    color: white;
+}
+
+.containerDet>img {
+    height: 233.33px;
+}

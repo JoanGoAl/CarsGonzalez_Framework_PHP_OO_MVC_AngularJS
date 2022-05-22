@@ -1,1 +1,55 @@
-<h1>Esto es el shop</h1>
+<div class="brand_color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>Cars</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="brand"></div>
+
+<div class="col-md-3">
+    <h3 style="width: auto; margin-left: 1350px;">OrderBy</h3>
+    <select class="form-control orderBy" name="orderBy" id="orderBy" style="height: 54px; margin-left: 1350px;">
+        <option value="def">Order By</option>
+        <option value="price">Price</option>
+        <option value="km" selected="selected">Km</option>
+    </select>
+</div>
+
+{{models}}
+<div class="brand-bg" id="brand-bg">
+    <div class="filters">
+        <div class="container-filters">
+            <h2 class="title-filters">Por marcas</h2>
+            <div class="col-md-12">
+                <select ng-click="models()" class="form-control" name="marca" id="marca" style="height: 54px;">
+                    <option value="Allbrand" selected="selected">Seleccione todas las marcas</option>
+                    <option ng-repeat="item in brands" value="{{item.id_brand}}">{{item.name_brand}}</option>
+                </select>
+            </div>
+            <h2 class="title-filters">Por modelos</h2>
+            <div class="col-md-12"><select class="form-control" name="modelo" id="modelo" style="height: 54px;">
+                    <option value="Allmodels" selected="selected">Seleccione todos los modelos</option>
+                    
+                </select></div>
+            <h2 class="title-filters">Por colores</h2>
+            <div class="col-md-12"><select class="form-control" name="color" id="color" style="height: 54px;">
+                    <option value="Allcolors" selected="selected">Seleccione todos los colores</option>
+                    <!-- <option value="Blue">Blue</option>
+                    <option value="White">White</option>
+                    <option value="Black">Black</option>
+                    <option value="Red">Red</option>
+                    <option value="Green">Green</option>
+                    <option value="Yellow">Yellow</option> -->
+                </select></div>
+            <div class="col-md-12 read-more" id="remove-filters">Remove filters</div>
+        </div>
+    </div>
+
+    <p>{{cars}}</p>
+
+</div>
