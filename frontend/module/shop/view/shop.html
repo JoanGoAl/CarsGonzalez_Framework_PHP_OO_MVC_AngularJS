@@ -20,24 +20,26 @@
     </select>
 </div>
 
-<!-- <button ng-click="seeLS()">LocalStorage</button>
-{{ls}} -->
-
 <div class="brand-bg" id="brand-bg">
+
+    <div class="location" id="location">
+        <div id="map">
+
+        </div>
+    </div>
+
     <div class="filters">
         <div class="container-filters">
             <h2 class="title-filters">Por marcas</h2>
             <div class="col-md-12">
-                <select ng-model='brandSelected' ng-change="getModels()" class="form-control" name="marca" id="marca"
-                    style="height: 54px;">
+                <select ng-model='brandSelected' ng-change="getModels()" class="form-control" name="marca" id="marca" style="height: 54px;">
                     <option value="Allbrand" selected="selected">Seleccione todas las marcas</option>
                     <option ng-repeat="item in brands" value="{{item.id_brand}}">{{item.name_brand}}</option>
                 </select>
             </div>
             <h2 class="title-filters">Por modelos</h2>
             <div class="col-md-12">
-                <select ng-model='modelSelected' ng-change="loadCarsForModel()" class="form-control" name="modelo"
-                    id="modelo" style="height: 54px;">
+                <select ng-model='modelSelected' ng-change="loadCarsForModel()" class="form-control" name="modelo" id="modelo" style="height: 54px;">
                     <option value="Allmodels" selected="selected">Seleccione todos los modelos</option>
                     <option ng-repeat="item in modelos" value="{{item.id_model}}">{{item.name_model}}</option>
                 </select>
@@ -55,15 +57,14 @@
 
     <div class="container" id="containerCar">
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin" ng-repeat="item in cars">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin" ng-repeat="item in infocars">
                 <div class="brand_box" id="1">
-                    <div class="containerDet" id="item.id_car">
+                    <div class="containerDet" id="item.id_car" ng-click="loadDetails()">
                         <img src="backend/{{item.photo_car}}">
                         <h3>{{item.name_brand}} {{item.name_model}}</h3>
                         <span>{{item.price}}</span>
                     </div>
-                    <div id="like-box" idlike="like-box-1" class="no-like"><i class="fa fa-heart fa-lg"
-                            aria-hidden="true"></i></div>
+                    <div id="like-box" idlike="like-box-1" class="no-like"><i class="fa fa-heart fa-lg" aria-hidden="true"></i></div>
                 </div>
             </div>
         </div>

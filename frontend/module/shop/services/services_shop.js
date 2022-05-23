@@ -1,4 +1,4 @@
-app.factory('services_shop', ['services', '$rootScope', 'toastr', function(services, $rootScope, toastr) { 
+app.factory('services_shop', ['services', '$rootScope', 'toastr', function(services, $rootScope, toastr) {
 
     let service = {
         getModels: getModels,
@@ -69,7 +69,7 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
                     pages: numofpages,
                     calcpag: calcpag
                 };
-                
+
             }, function(error) {
                 console.log(error);
             });
