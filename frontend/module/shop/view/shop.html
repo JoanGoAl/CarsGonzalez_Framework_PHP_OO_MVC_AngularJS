@@ -36,14 +36,15 @@
             </div>
             <h2 class="title-filters">Por modelos</h2>
             <div class="col-md-12">
-                <select ng-model='modelSelected' ng-change="loadCarsForModel()" class="form-control" name="modelo" id="modelo" style="height: 54px;">
+                <select ng-model='modelSelected' ng-change="loadCarsForModel()" class="form-control" name="modelo"
+                    id="modelo" style="height: 54px;">
                     <option value="Allmodels" selected="selected">Seleccione todos los modelos</option>
                     <option ng-repeat="item in modelos" value="{{item.id_model}}">{{item.name_model}}</option>
                 </select>
             </div>
             <h2 class="title-filters">Por colores</h2>
             <div class="col-md-12">
-                <select class="form-control" name="color" id="color" style="height: 54px;">
+                <select ng-model="colorSelected" ng-change="loadCarsForColor()" class="form-control" name="color" id="color" style="height: 54px;">
                     <option value="Allcolors" selected="selected">Seleccione todos los colores</option>
                     <option ng-repeat="item in colors" value="{{item.color}}">{{item.color}}</option>
                 </select>
@@ -68,4 +69,12 @@
         </div>
     </div>
 
+</div>
+
+<div class="containerpagbutt" id="containerpagbutt">
+    <div ng-click="pagLess()" class="buttpagination" id="buttonprev">&lt;</div>
+    <div class="containernumpage" id="containernumpage">
+        <p id="conttextpagination" class="conttextpagination">{{actualpage}} / {{pages}}</p>
+    </div>
+    <div ng-click="pagMore()" class="buttpagination" id="buttonpost">&gt;</div>
 </div>

@@ -38,17 +38,37 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
     }
 
     function getCars(filtros) {
-        
+
+        if (localStorage.getItem('pagination')) {
+            position = JSON.parse(localStorage.getItem('pagination'))
+        } else {
+            position = 0
+            localStorage.setItem('pagination', JSON.stringify(position))
+        }
+
+        if (position < 0) {
+            position = 0
+        }
+
         let totalData = {
             data: filtros,
             pos: 'def',
-            pagination: 0
+            pagination: position
         }
 
         return services.post('shop', 'filters', totalData)
             .then(function(response) {
 
-                return response;
+                let numofpages = Math.ceil(response[1][0].numofcars / 6)
+                let cars = response[0]
+
+                numofpages == 0 ? calcpag = 0 : calcpag = (position / 6) + 1
+
+                return {
+                    cars: cars,
+                    pages: numofpages,
+                    calcpag: calcpag
+                };
                 
             }, function(error) {
                 console.log(error);
