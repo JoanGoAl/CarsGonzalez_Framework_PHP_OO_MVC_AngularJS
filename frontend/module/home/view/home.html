@@ -15,7 +15,7 @@
         <div class="swiper-wrapper" id="logo">
 
             <div class="swiper-slide m-slider__item" ng-repeat="item in list_brands">
-                <div class="m-card" id="{{ item.id_brand }}">
+                <div class="m-card" id="{{ item.id_brand }}" ng-click="redirect()">
                     <div class="m-card__header" ng-style="{'background-image':'url(frontend/{{ item.photo_brand }})'}"></div>
                     <div class="m-card__body">{{ item.name_brand }}</div>
                 </div>
@@ -40,7 +40,7 @@
     <div class="swiper row">
         <div class="swiper-wrapper" id="logo">
             <div class="swiper-slide m-slider__item" ng-repeat="item in list_bodywork">
-                <div class="m-card" id="{{ item.id_bodywork }}">
+                <div class="m-card" id="{{ item.id_bodywork }}" ng-click="redirect()">
                     <div class="m-card__header" ng-style="{'background-image':'url(frontend/{{ item.photo_bodywork }})'}"></div>
                     <div class="m-card__body">{{ item.name_bodywork }}</div>
                 </div>
@@ -63,7 +63,7 @@
 <div class="brand"></div>
 <div class="about">
     <div class="container">
-        <div class="row" ng-repeat="item in list_categories">
+        <div class="row" ng-repeat="item in list_categories" ng-click="redirect()">
 
             <!-- OP 1 -->
             <div ng-if="$index % 2 == 0" class="col-xl-5 col-lg-5 col-md-5 co-sm-l2">

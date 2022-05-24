@@ -3,3 +3,50 @@
 
     </div>
 </div>
+
+<div class="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-5 col-md-5 co-sm-l2">
+                <div class="about_img">
+                    <figure>
+                        <div class="container">
+                            <div class="row">
+                                <div class="swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide m-slide__item" ng-repeat="item in carPhotos">
+                                            <div class="m-card">
+                                                <div class="m-card__header"
+                                                    style="background-image: url('backend/{{item}}');">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-pagination"></div>
+                                    <div class="swiper-button-prev" tabindex="0" role="button"
+                                        aria-label="Previous slide" aria-controls="swiper-wrapper-d3de7c59dc59516b">
+                                    </div>
+                                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"
+                                        aria-controls="swiper-wrapper-d3de7c59dc59516b"></div><span
+                                        class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-7 col-md-7 co-sm-l2">
+                <h1>
+
+                </h1>
+                <div class="about_box">
+                    <span>{{car.name_brand}} {{car.name_model}}</span>
+                    <p>CV: {{car.cv}} Kilometros: {{car.kms}} Numero de puertas: {{car.num_door}}</p>
+                    <h2>Precio: {{car.price}}€</h2>
+                    <h2>Veces visitado: {{car.visited}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12"><a href="#/shop" class="read-more">Back</a></div>
+</div>

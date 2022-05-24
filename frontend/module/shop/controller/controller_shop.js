@@ -75,47 +75,12 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
         highlights()
     }
 
-    $scope.redirectDetails = function() {
-        console.log('holaa');
-    }
-
     function loadMap() {
-
-        setTimeout(() => {
-            mapboxgl.accessToken = 'pk.eyJ1Ijoiam9hbmdnNCIsImEiOiJjbDAxNDY3M3EwZ3FiM2NtZWd2cDFscWR4In0.i-vcBEVshSWAABkJjsXYxw';
-            let map = new mapboxgl.Map({
-                container: 'map', // container ID
-                style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                center: [-0.4166700, 39], // [lng, lat]
-                zoom: 7 // starting zoom
-            });
-
-            $scope.infocars.forEach(element => {
-                setTimeout(() => {
-                    let popup = new mapboxgl.Popup({ closeOnClick: true })
-                        .setHTML(
-                            '<p>' + element.name_brand + ' ' + element.name_model + '</p><img class="redirectPopup" src="backend/' + element.photo_car + '" alt=""><a class="popupRedirect" href="http://youtube.com">Pusle aqui para ver el coche</a>'
-                        )
-
-
-                    new mapboxgl.Marker({
-                            color: '#FF0000',
-                            draggable: false
-                        })
-                        .setLngLat([element.lng, element.lat])
-                        .setPopup(popup)
-                        .addTo(map);
-                }, 0);
-            });
-        }, 0)
-
+        services_shop.loadMap($scope.infocars)
     }
 
     $scope.loadDetails = function() {
-        // console.log(this.item.id_car);
-        // $scope.infoDetailsCar = this.item
-        $rootScope.infoDetailsCar = this.item
-        window.location = "#/details"
+        window.location = "#/details/" + this.item.id_car
     }
 
     loadCars()

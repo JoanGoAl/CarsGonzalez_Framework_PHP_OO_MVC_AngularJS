@@ -1,35 +1,20 @@
-app.controller('controller_details', function($scope, $rootScope) {
+app.controller('controller_details', function($scope, $routeParams, services_details) {
     
-    let info = $rootScope.infoDetailsCar
+    services_details.getCar($routeParams.id).then((data => {
+        $scope.car = data[0]
+        $scope.carPhotos = data[1]
 
-    function loadMap() {
-        setTimeout(() => {
-            mapboxgl.accessToken = 'pk.eyJ1Ijoiam9hbmdnNCIsImEiOiJjbDAxNDY3M3EwZ3FiM2NtZWd2cDFscWR4In0.i-vcBEVshSWAABkJjsXYxw';
-            let map = new mapboxgl.Map({
-                container: 'map', // container ID
-                style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                center: [-0.4166700, 39], // [lng, lat]
-                zoom: 7 // starting zoom
-            });
-
-            setTimeout(() => {
-                let popup = new mapboxgl.Popup({ closeOnClick: true })
-                    .setHTML(
-                        '<p>' + info.name_brand + ' ' + info.name_model + '</p><img class="redirectPopup" src="backend/' + info.photo_car + '" alt=""><a class="popupRedirect" href="http://youtube.com">Pusle aqui para ver el coche</a>'
-                    )
-
-                new mapboxgl.Marker({
-                        color: '#FF0000',
-                        draggable: false
-                    })
-                    .setLngLat([info.lng, info.lat])
-                    .setPopup(popup)
-                    .addTo(map);
-            }, 0);
-        }, 0)
+        let info = data[0]
+        loadMap(info)
+        loadSwiper()
+    }))
+    
+    function loadSwiper() {
+        services_details.loadSwiper()
     }
 
-    
+    function loadMap(info) {
+        services_details.loadMap(info)
+    }
 
-    loadMap()
 })

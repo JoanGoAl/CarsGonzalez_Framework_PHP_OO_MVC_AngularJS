@@ -31,7 +31,7 @@ app.config(['$routeProvider', function($routeProvider) {
                     return services.get('shop', 'brands_and_model');
                 }
             }
-        }).when("/details", {
+        }).when("/details/:id", {
             templateUrl: "frontend/module/shop/view/details.html",
             controller: "controller_details",
             css: ['frontend/module/shop/view/css/filter.css', 'frontend/module/shop/view/css/likes.css', 'frontend/module/shop/view/css/location.css', 'frontend/module/shop/view/css/slider-details.css']

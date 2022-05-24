@@ -3,7 +3,8 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
     let service = {
         getModels: getModels,
         setFilters: setFilters,
-        getCars: getCars
+        getCars: getCars,
+        loadMap: loadMap
     }
     return service;
 
@@ -73,5 +74,35 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
             }, function(error) {
                 console.log(error);
             });
+    }
+
+    function loadMap(info) {
+        setTimeout(() => {
+            mapboxgl.accessToken = 'pk.eyJ1Ijoiam9hbmdnNCIsImEiOiJjbDAxNDY3M3EwZ3FiM2NtZWd2cDFscWR4In0.i-vcBEVshSWAABkJjsXYxw';
+            let map = new mapboxgl.Map({
+                container: 'map', // container ID
+                style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                center: [-0.4166700, 39], // [lng, lat]
+                zoom: 7 // starting zoom
+            });
+
+            info.forEach(element => {
+                setTimeout(() => {
+                    let popup = new mapboxgl.Popup({ closeOnClick: true })
+                        .setHTML(
+                            '<p>' + element.name_brand + ' ' + element.name_model + '</p><img class="redirectPopup" src="backend/' + element.photo_car + '" alt=""><a class="popupRedirect" href="#/details/'+ element.id_car +'">Pusle aqui para ver el coche</a>'
+                        )
+
+
+                    new mapboxgl.Marker({
+                            color: '#FF0000',
+                            draggable: false
+                        })
+                        .setLngLat([element.lng, element.lat])
+                        .setPopup(popup)
+                        .addTo(map);
+                }, 0);
+            });
+        }, 0)
     }
 }])
