@@ -34,7 +34,7 @@ app.config(['$routeProvider', function($routeProvider) {
         }).when("/details/:id", {
             templateUrl: "frontend/module/shop/view/details.html",
             controller: "controller_details",
-            css: ['frontend/module/shop/view/css/filter.css', 'frontend/module/shop/view/css/likes.css', 'frontend/module/shop/view/css/location.css', 'frontend/module/shop/view/css/slider-details.css']
+            css: ['frontend/module/shop/view/css/filter.css', 'frontend/module/shop/view/css/likes.css', 'frontend/module/shop/view/css/location.css', 'frontend/module/shop/view/css/slider-details.css'],
         }).when("/login", {
             templateUrl: "frontend/module/login/view/login.html",
             css: ["https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap", "frontend/view/css/login.css"]

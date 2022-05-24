@@ -16,19 +16,15 @@
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide m-slide__item" ng-repeat="item in carPhotos">
                                             <div class="m-card">
-                                                <div class="m-card__header"
-                                                    style="background-image: url('backend/{{item}}');">
+                                                <div class="m-card__header" style="background-image: url('backend/{{item}}');">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="swiper-pagination"></div>
-                                    <div class="swiper-button-prev" tabindex="0" role="button"
-                                        aria-label="Previous slide" aria-controls="swiper-wrapper-d3de7c59dc59516b">
+                                    <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-d3de7c59dc59516b">
                                     </div>
-                                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"
-                                        aria-controls="swiper-wrapper-d3de7c59dc59516b"></div><span
-                                        class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-d3de7c59dc59516b"></div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                                 </div>
                             </div>
                         </div>
@@ -49,4 +45,33 @@
         </div>
     </div>
     <div class="col-md-12"><a href="#/shop" class="read-more">Back</a></div>
+</div>
+
+<div class="brand-bg" id="brand-bg">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>Coches relacionados</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container" id="containerCar">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin" ng-repeat="item in RelatedCar">
+                <div class="brand_box" id="1">
+                    <div class="containerDet" id="item.id_car" ng-click="loadDetails()">
+                        <img src="backend/{{item.photo_car}}">
+                        <h3>{{item.name_brand}} {{item.name_model}}</h3>
+                        <span>{{item.price}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="seeMore == false" class="col-md-12 read-more" id="read-more" ng-click="moreRelated()">See More</div>
 </div>

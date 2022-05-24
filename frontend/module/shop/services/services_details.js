@@ -1,16 +1,17 @@
-app.factory('services_details', ['services', '$rootScope', 'toastr', function (services, $rootScope, toastr) {
+app.factory('services_details', ['services', '$rootScope', 'toastr', function(services, $rootScope, toastr) {
 
     let service = {
         getCar: getCar,
         loadMap: loadMap,
-        loadSwiper: loadSwiper
+        loadSwiper: loadSwiper,
+        getRelatedCar: getRelatedCar
     }
     return service;
 
     function getCar(id) {
 
         return services.post('shop', 'details_car', { idcar: id })
-            .then(function (response) {
+            .then(function(response) {
 
                 if (response[0].length == 0) {
                     return 'empty'
@@ -22,9 +23,22 @@ app.factory('services_details', ['services', '$rootScope', 'toastr', function (s
 
                 return [response[0][0], photos]
 
-            }, function (error) {
+            }, function(error) {
                 console.log(error);
             });
+    }
+
+    function getRelatedCar(data) {
+
+        return services.post('shop', 'related_cars', data)
+            .then(function(response) {
+
+                return response;
+
+            }, function(error) {
+                console.log(error);
+            });
+
     }
 
     function loadMap(info) {
@@ -44,9 +58,9 @@ app.factory('services_details', ['services', '$rootScope', 'toastr', function (s
                 )
 
             new mapboxgl.Marker({
-                color: '#FF0000',
-                draggable: false
-            })
+                    color: '#FF0000',
+                    draggable: false
+                })
                 .setLngLat([info.lng, info.lat])
                 .setPopup(popup)
                 .addTo(map);
