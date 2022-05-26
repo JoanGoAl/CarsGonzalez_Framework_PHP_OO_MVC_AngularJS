@@ -30,7 +30,7 @@ app.factory("services", ['$http', '$q', function($http, $q) {
         return promise;
     };
 
-    obj.post = function(module, option, data) {
+    obj.post = function(module, option, data = undefined) {
         var defered = $q.defer();
         var promise = defered.promise;
         $http({

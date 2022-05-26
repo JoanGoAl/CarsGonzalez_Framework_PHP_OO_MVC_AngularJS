@@ -38,8 +38,61 @@ app.config(['$routeProvider', function($routeProvider) {
         }).when("/login", {
             templateUrl: "frontend/module/login/view/login.html",
             css: ["https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap", "frontend/view/css/login.css"]
-                // controller: "controller_shop"
+                // controller: "controller_login"
         }).otherwise("/home", {
             redirectTo: '/home'
         });
 }]);
+
+app.run(function($rootScope, services, services_search) {
+
+    let filtros = JSON.parse(localStorage.getItem('filtros'))
+    $rootScope.catSearchSelect = filtros.category
+    $rootScope.brandSearchSelect = filtros.id_brands
+
+    $rootScope.onClickDocument = function() {
+        if ($rootScope.seeCities == true) $rootScope.seeCities = false
+    }
+
+    services_search.searchInfo().then((data => {
+        $rootScope.catSearch = data[0]
+        $rootScope.brandSearch = data[1]
+    }))
+
+    $rootScope.getCities = function() {
+        services_search.cityInfo(this.citySearch).then((data => {
+            $rootScope.cities = data
+        }))
+        $rootScope.seeCities = true
+    }
+
+    $rootScope.setCity = function() {
+        $rootScope.citySearch = this.item.city
+        $rootScope.seeCities = false
+        filtros.city = this.item.city
+    }
+
+
+    $rootScope.getInfoSearch = function() {
+        filtros.category = this.catSearchSelect
+        filtros.id_brands = this.brandSearchSelect
+        console.log(filtros);
+    }
+
+    $rootScope.setSearch = function() {
+        $rootScope.citySearch == undefined ? filtros.city = 'Allcities' : filtros = filtros
+
+        localStorage.setItem('filtros', JSON.stringify(filtros))
+
+        if (window.location.hash == '#/shop') {
+            window.location = '#/home'
+            window.location = '#/shop'
+        } else {
+            window.location = '#/shop'
+        }
+
+
+        $rootScope.citySearch = undefined
+    }
+
+});

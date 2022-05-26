@@ -90,7 +90,7 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
                 setTimeout(() => {
                     let popup = new mapboxgl.Popup({ closeOnClick: true })
                         .setHTML(
-                            '<p>' + element.name_brand + ' ' + element.name_model + '</p><img class="redirectPopup" src="backend/' + element.photo_car + '" alt=""><a class="popupRedirect" href="#/details/'+ element.id_car +'">Pusle aqui para ver el coche</a>'
+                            '<p>' + element.name_brand + ' ' + element.name_model + '</p><img class="redirectPopup" src="backend/' + element.photo_car + '" alt=""><a class="popupRedirect" href="#/details/' + element.id_car + '">Pusle aqui para ver el coche</a>'
                         )
 
 
@@ -105,4 +105,5 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
             });
         }, 0)
     }
+
 }])

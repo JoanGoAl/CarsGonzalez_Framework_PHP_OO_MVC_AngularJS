@@ -7,6 +7,10 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
 
     function loadCars() {
         services_shop.getCars(filtros).then((data => {
+            console.log(data.cars.length);
+
+            data.cars.length === 0 ? $scope.notFound = true : $scope.notFound = false
+
             $scope.infocars = data.cars;
             $scope.pages = data.pages;
             $scope.actualpage = data.calcpag

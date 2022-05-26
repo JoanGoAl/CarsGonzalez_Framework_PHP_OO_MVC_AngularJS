@@ -157,3 +157,16 @@
     height: 200px;
     background-color: red;
 }
+
+.notFoundCars {
+    justify-content: center;
+    height: 445px;
+    margin-top: auto;
+    text-align: center;
+}
+
+.notFoundCars>h1 {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

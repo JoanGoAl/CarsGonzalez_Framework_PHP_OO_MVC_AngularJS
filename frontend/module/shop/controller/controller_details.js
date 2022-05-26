@@ -22,8 +22,6 @@ app.controller('controller_details', function($scope, $routeParams, services_det
         loadSwiper()
     }))
 
-
-
     function loadSwiper() {
         services_details.loadSwiper()
     }

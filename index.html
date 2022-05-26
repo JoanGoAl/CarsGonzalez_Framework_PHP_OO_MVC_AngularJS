@@ -36,6 +36,7 @@
     <script src="frontend/module/shop/services/services_shop.js"></script>
     <script src="frontend/module/shop/controller/controller_details.js"></script>
     <script src="frontend/module/shop/services/services_details.js"></script>
+    <script src="frontend/module/search/services/services_search.js"></script>
 
     <!--================== CSS & JS (nivel aplicacion) ==================-->
     <link rel="stylesheet" href="frontend/view/css/animate.min.css">
@@ -66,7 +67,7 @@
 
 </head>
 
-<body>
+<body ng-click="onClickDocument()">
     <div ng-include="'frontend/view/inc/header.html'"></div>
     <div ng-view autoscroll="true"></div>
     <div ng-include="'frontend/view/inc/footer.html'"></div>
