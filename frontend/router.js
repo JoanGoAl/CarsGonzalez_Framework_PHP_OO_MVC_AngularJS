@@ -76,11 +76,19 @@ app.run(function($rootScope, services, services_search) {
     $rootScope.getInfoSearch = function() {
         filtros.category = this.catSearchSelect
         filtros.id_brands = this.brandSearchSelect
-        console.log(filtros);
     }
 
     $rootScope.setSearch = function() {
         $rootScope.citySearch == undefined ? filtros.city = 'Allcities' : filtros = filtros
+
+        filtros = {
+            id_brands: filtros.id_brands,
+            id_models: 'Allmodels',
+            color: 'Allcolors',
+            category: filtros.category,
+            city: filtros.city,
+            bodywork: 'Allbody'
+        }
 
         localStorage.setItem('filtros', JSON.stringify(filtros))
 

@@ -35,10 +35,19 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
             localStorage.setItem('filtros', JSON.stringify(filtros))
         }
 
-        return filtros
+        if (localStorage.getItem('orderBy')) {
+            orderBy = JSON.parse(localStorage.getItem('orderBy'))
+        } else {
+            orderBy = "def"
+
+            localStorage.setItem('orderBy', JSON.stringify(orderBy))
+        }
+
+
+        return [filtros, orderBy]
     }
 
-    function getCars(filtros) {
+    function getCars(filtros, order) {
 
         if (localStorage.getItem('pagination')) {
             position = JSON.parse(localStorage.getItem('pagination'))
@@ -53,7 +62,7 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
 
         let totalData = {
             data: filtros,
-            pos: 'def',
+            pos: order,
             pagination: position
         }
 

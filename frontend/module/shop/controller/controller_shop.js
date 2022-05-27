@@ -3,11 +3,13 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
     $scope.brands = filters[0]
     $scope.colors = filters[2]
 
-    let filtros = services_shop.setFilters()
+    let filtros = services_shop.setFilters()[0]
+    let orderBy = services_shop.setFilters()[1]
+
+    console.log(filtros);
 
     function loadCars() {
-        services_shop.getCars(filtros).then((data => {
-            console.log(data.cars.length);
+        services_shop.getCars(filtros, orderBy).then((data => {
 
             data.cars.length === 0 ? $scope.notFound = true : $scope.notFound = false
 
@@ -36,6 +38,7 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
         $scope.brandSelected = filtros.id_brands
         $scope.modelSelected = filtros.id_models
         $scope.colorSelected = filtros.color
+        $scope.orderSelected = orderBy
     }
 
     $scope.getModels = function() {
@@ -63,6 +66,13 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
         loadCars()
     }
 
+    $scope.loadCarsForOrder = function() {
+        orderBy = this.orderSelected
+        localStorage.setItem('orderBy', JSON.stringify(orderBy))
+        localStorage.setItem('pagination', 0)
+        loadCars()
+    }
+
     $scope.removeFilters = function() {
         filtros = {
             id_brands: 'Allbrand',
@@ -74,6 +84,9 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
         }
         localStorage.setItem('filtros', JSON.stringify(filtros))
         $scope.modelos = []
+
+        orderBy = 'def'
+        localStorage.setItem('orderBy', JSON.stringify(orderBy))
 
         loadCars()
         highlights()

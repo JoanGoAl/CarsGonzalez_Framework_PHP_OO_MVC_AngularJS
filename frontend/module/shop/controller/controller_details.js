@@ -9,9 +9,16 @@ app.controller('controller_details', function($scope, $routeParams, services_det
 
             data.length < 4 ? $scope.seeMore = true : $scope.seeMore = false
 
+            console.log($scope.numOfRelated + " " + data.length);
+
             $scope.moreRelated = function() {
                 $scope.numOfRelated -= 3
                 $scope.RelatedCar = data.slice($scope.numOfRelated)
+
+                if ($scope.numOfRelated + data.length > -3 && $scope.numOfRelated + data.length < 1) {
+                    $scope.seeMore = true
+                }
+
             }
             $scope.RelatedCar = data.slice($scope.numOfRelated)
 
