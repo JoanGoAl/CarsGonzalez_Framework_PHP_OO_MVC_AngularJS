@@ -149,11 +149,3 @@ button:hover {
 .div-socialLogin>i:hover {
     background-color: rgb(176, 176, 176);
 }
-
-#name-login,
-#passwd-login,
-#name-register,
-#passwd-register,
-#passwd2-register {
-    height: 30px;
-}

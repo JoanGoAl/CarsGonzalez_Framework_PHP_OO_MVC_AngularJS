@@ -37,14 +37,22 @@ app.config(['$routeProvider', function($routeProvider) {
             css: ['frontend/module/shop/view/css/filter.css', 'frontend/module/shop/view/css/likes.css', 'frontend/module/shop/view/css/location.css', 'frontend/module/shop/view/css/slider-details.css'],
         }).when("/login", {
             templateUrl: "frontend/module/login/view/login.html",
-            css: ["https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap", "frontend/view/css/login.css"]
-                // controller: "controller_login"
+            css: ["https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap", "frontend/view/css/login.css"],
+            controller: "controller_login"
         }).otherwise("/home", {
             redirectTo: '/home'
         });
 }]);
 
 app.run(function($rootScope, services, services_search) {
+
+    if (localStorage.getItem('token')) {
+        console.log(JSON.parse(localStorage.getItem('token')));
+        $rootScope.loginOrLogout = 'logout';
+    } else {
+        console.log('notuser');
+        $rootScope.loginOrLogout = 'login';
+    }
 
     let filtros = JSON.parse(localStorage.getItem('filtros'))
     $rootScope.catSearchSelect = filtros.category

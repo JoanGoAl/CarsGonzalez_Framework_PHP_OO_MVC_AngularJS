@@ -6,8 +6,6 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
     let filtros = services_shop.setFilters()[0]
     let orderBy = services_shop.setFilters()[1]
 
-    console.log(filtros);
-
     function loadCars() {
         services_shop.getCars(filtros, orderBy).then((data => {
 
