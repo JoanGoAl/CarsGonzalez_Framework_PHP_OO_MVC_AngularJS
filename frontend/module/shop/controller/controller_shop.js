@@ -11,6 +11,24 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
 
             data.cars.length === 0 ? $scope.notFound = true : $scope.notFound = false
 
+            if (localStorage.getItem('token')) {
+
+                services_shop.loadLikes(JSON.parse(localStorage.getItem('token')).replace(/['"]+/g, '')).then((infolikes => {
+                    console.log(infolikes);
+
+                    for (i in data.cars) {
+                        for (j in infolikes) {
+                            if (data.cars[i].id_car === infolikes[j].id_car) {
+                                data.cars[i].fav_class = 'like'
+                            }
+                        }
+                    }
+                }))
+
+            } else {
+                $scope.statusLike = 'no-like'
+            }
+
             $scope.infocars = data.cars;
             $scope.pages = data.pages;
             $scope.actualpage = data.calcpag

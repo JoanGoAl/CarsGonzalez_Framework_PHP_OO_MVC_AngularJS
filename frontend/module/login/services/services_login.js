@@ -1,5 +1,9 @@
 app.factory('services_login', ['services', '$rootScope', 'toastr', function(services, $rootScope, toastr) {
-    let service = { login: login };
+    let service = {
+        login: login,
+        infoUser: infoUser,
+        logout: logout
+    };
     return service;
 
     function login(user) {
@@ -12,9 +16,37 @@ app.factory('services_login', ['services', '$rootScope', 'toastr', function(serv
                     services.post('login', 'login', user)
                         .then(function(response) {
                             localStorage.setItem('token', JSON.stringify(response))
-                            window.location = '#/home'
+                            window.location.href = '#/home'
+                            location.reload()
                         });
                 }
+            }, function(error) {
+                console.log(error);
+            });
+    }
+
+    function infoUser(token) {
+        return services.post('login', 'data_user', { token: token })
+            .then(function(response) {
+
+                return response;
+
+            }, function(error) {
+                console.log(error);
+            });
+    }
+
+    function logout() {
+        services.post('login', 'logout')
+            .then(function(response) {
+
+                if (response == '"_logout"') {
+                    localStorage.removeItem('token');
+                    $rootScope.loginOrLogout = 'login';
+                    $rootScope.infoUser = null;
+                    location.reload()
+                }
+
             }, function(error) {
                 console.log(error);
             });

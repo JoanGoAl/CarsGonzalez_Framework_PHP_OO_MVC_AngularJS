@@ -20,7 +20,14 @@
                                     <li><a href="#/shop">Shop</a></li>
                                     <li> <a href="#/contact">Contact us</a> </li>
                                     <li ng-if="loginOrLogout == 'login'"> <a href="#/login">Login</a> </li>
-                                    <li ng-if="loginOrLogout == 'logout'"><a href="#">Logout</a></li>
+                                    <li>
+                                        <div ng-if="loginOrLogout == 'logout'" id="menu-area-main" style="background-image: url({{infoUser.avatar_user}}); height: 50px; width: 50px;">
+                                            <div id="container-info-user">
+                                                <div id="see-profile" class="info-user">Profile</div>
+                                                <div ng-click="logout()" id="butt-logout" class="info-user">Logout</div>
+                                            </div>
+                                        </div>
+                                    </li>
                                     <li>
                                         <div id="menu-area-main">
 

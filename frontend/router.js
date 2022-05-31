@@ -44,14 +44,21 @@ app.config(['$routeProvider', function($routeProvider) {
         });
 }]);
 
-app.run(function($rootScope, services, services_search) {
+app.run(function($rootScope, services, services_search, services_login) {
 
     if (localStorage.getItem('token')) {
-        console.log(JSON.parse(localStorage.getItem('token')));
         $rootScope.loginOrLogout = 'logout';
+        let token = JSON.parse(localStorage.getItem('token')).replace(/['"]+/g, '')
+        services_login.infoUser(token).then((data => {
+            $rootScope.infoUser = data
+        }))
+
     } else {
-        console.log('notuser');
         $rootScope.loginOrLogout = 'login';
+    }
+
+    $rootScope.logout = () => {
+        services_login.logout();
     }
 
     let filtros = JSON.parse(localStorage.getItem('filtros'))

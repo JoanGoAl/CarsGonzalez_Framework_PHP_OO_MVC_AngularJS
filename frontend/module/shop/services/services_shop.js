@@ -4,7 +4,8 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
         getModels: getModels,
         setFilters: setFilters,
         getCars: getCars,
-        loadMap: loadMap
+        loadMap: loadMap,
+        loadLikes: loadLikes
     }
     return service;
 
@@ -113,6 +114,30 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
                 }, 0);
             });
         }, 0)
+    }
+
+    function loadLikes(token) {
+        return services.post('shop', 'user_likes', { token: token })
+            .then(function(response) {
+                return response;
+
+                // if (localStorage.getItem('token')) {
+
+
+                //     for (i in data.cars) {
+                //         for (j in response) {
+                //             if (data.cars[i].id_car === response[j].id_car) {
+                //                 data.cars[i].fav_class = 'like'
+                //             }
+                //         }
+                //     }
+
+                // } else {
+                //     $scope.statusLike = 'no-like'
+                // }
+            }, function(error) {
+                console.log(error);
+            });
     }
 
 }])
