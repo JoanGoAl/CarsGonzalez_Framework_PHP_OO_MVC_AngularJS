@@ -118,4 +118,5 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
 
     loadCars()
     highlights()
+
 })

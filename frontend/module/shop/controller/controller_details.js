@@ -1,4 +1,4 @@
-app.controller('controller_details', function($scope, $routeParams, services_details) {
+app.controller('controller_details', function($scope, $rootScope, $routeParams, services_details) {
 
     services_details.getCar($routeParams.id).then((data => {
         $scope.car = data[0]
@@ -28,6 +28,10 @@ app.controller('controller_details', function($scope, $routeParams, services_det
         loadMap(info)
         loadSwiper()
     }))
+
+    $scope.loadDetails = function() {
+        window.location = "#/details/" + this.item.id_car
+    }
 
     function loadSwiper() {
         services_details.loadSwiper()

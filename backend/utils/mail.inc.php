@@ -5,7 +5,7 @@
     use PHPMailer\PHPMailer\SMTP;
 
     $path = $_SERVER["DOCUMENT_ROOT"] . '/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_AngularJS/';
-    require $path . 'vendor/autoload.php';
+    require $path . '/backend/vendor/autoload.php';
     
     class Mail {
         public static function contactMail($nombre, $emailContacto, $message) {
@@ -80,4 +80,5 @@
 
     }
 
-?>
+    // Mail::contactMail("Moises", "gfmois@gmail.com", "Primer mensaje de prueba");
+    ?>
