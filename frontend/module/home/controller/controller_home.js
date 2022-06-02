@@ -1,8 +1,29 @@
-app.controller('controller_home', function($scope, brands, services_shop, categories, bodywork) {
+app.controller('controller_home', function($scope, brands, categories, services_home, bodywork) {
 
+    $scope.cont = 0;
     $scope.list_brands = brands;
     $scope.list_categories = categories;
     $scope.list_bodywork = bodywork;
+    if (localStorage.getItem('news')) {
+        notice = JSON.parse(localStorage.getItem('news'))
+        $scope.all_news = notice;
+        $scope.news = $scope.all_news.splice(0, 3)
+    } else {
+        services_home.getNews().then((data) => {
+            $scope.all_news = data;
+            $scope.news = $scope.all_news.splice(0, 3)
+
+        })
+    }
+
+    $scope.moreNews = function() {
+        $scope.cont++
+        if ($scope.cont == 20) {
+            $scope.news = $scope.all_news.splice(0, 6)
+        }
+    }
+
+
 
     $scope.redirect = function() {
 

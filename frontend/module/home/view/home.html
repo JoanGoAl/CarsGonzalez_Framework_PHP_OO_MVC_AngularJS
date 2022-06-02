@@ -98,3 +98,31 @@
         </div>
     </div>
 </div>
+<div class="brand_color">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2>News</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="brand"></div>
+<div class="brand-bg" id="brand-bg">
+    <div class="container" id="containerCar">
+        <div class="row" infinite-scroll="moreNews()" infinite-scroll-distance="0.1">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin" ng-repeat="item in news">
+                <div class="brand_box" id="1">
+                    <div class="containerDet">
+                        <img src="{{item.image}}">
+                        <h3>{{item.title}}</h3>
+                        <span>{{item.description}}</span>
+                    </div>
+                    <div id="remove-filters">Ver noticia</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

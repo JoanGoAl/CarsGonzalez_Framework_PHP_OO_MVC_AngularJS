@@ -44,7 +44,7 @@
             <div class="col-md-12">
                 <h2 class="title-filters">OrderBy</h2>
                 <select ng-model='orderSelected' ng-change="loadCarsForOrder()" class="form-control" name="orderBy" id="orderBy" style="height: 54px;">
-                    <option value="def">Order By</option>
+                    <option value="def">More visited</option>
                     <option value="price">Price</option>
                     <option value="km">Km</option>
                 </select>
@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin" ng-repeat="item in infocars">
                 <div class="brand_box" id="1">
-                    <div class="containerDet" id="item.id_car" ng-click="loadDetails()">
+                    <div class="containerDet" id="{{item.id_car}}" ng-click="loadDetails()">
                         <img src="backend/{{item.photo_car}}">
                         <h3>{{item.name_brand}} {{item.name_model}}</h3>
                         <span>{{item.price}}</span>

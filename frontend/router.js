@@ -1,4 +1,4 @@
-var app = angular.module('CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_AngularJS', ['ngRoute', 'toastr', 'routeStyles']);
+var app = angular.module('CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_AngularJS', ['ngRoute', 'toastr', 'routeStyles', 'infinite-scroll']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
