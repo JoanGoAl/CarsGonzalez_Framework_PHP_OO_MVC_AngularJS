@@ -14,9 +14,7 @@
             $smtpInfo = parse_ini_file('phpMailer.ini', true);
 
             try {
-                // Server Site
                 $mail->isSMTP();
-                // $mail->SMTPDebug    = 2;
                 $mail->SMTPAuth     = true;
                 $mail->SMTPSecure   = 'tls';
                 $mail->Host         = $smtpInfo["SMTP"]["host"];
@@ -24,13 +22,10 @@
                 $mail->Username     = $smtpInfo["SMTP"]["username"];
                 $mail->Password     = $smtpInfo["SMTP"]["passwd"];
                 
-                // Recipient
                 $mail->setFrom($emailContacto, $nombre);
                 $mail->addAddress($smtpInfo["SMTP"]["toAddress"], 'Joan González');
                 $mail->addReplyTo($emailContacto);
                 
-                
-                // Content
                 $mail->isHTML(true);
                 $mail->Subject      = "Contact US: " . $nombre;
                 $mail->Body         = $message;
@@ -44,40 +39,33 @@
         
         }
     
-        public static function verify($nombre, $emailVerify) {
+        public static function verify($nombre, $emailVerify, $tokenEmail) {
+            $tokenEmail = str_replace('"', '', $tokenEmail);
+            $mail = new PHPMailer(true);
+            $smtpInfo = parse_ini_file('phpMailer.ini', true);
 
-            return "Hola $nombre tu correo es $emailVerify";
-            // $mail = new PHPMailer(true);
-            // $smtpInfo = parse_ini_file('phpMailer.ini', true);
-
-            // try {
-            //     // Server Site
-            //     $mail->isSMTP();
-            //     // $mail->SMTPDebug    = 2;
-            //     $mail->SMTPAuth     = true;
-            //     $mail->SMTPSecure   = 'tls';
-            //     $mail->Host         = $smtpInfo["SMTP"]["host"];
-            //     $mail->Port         = 587;
-            //     $mail->Username     = $smtpInfo["SMTP"]["username"];
-            //     $mail->Password     = $smtpInfo["SMTP"]["passwd"];
+            try {
+                $mail->isSMTP();
+                $mail->SMTPAuth     = true;
+                $mail->SMTPSecure   = 'tls';
+                $mail->Host         = $smtpInfo["SMTP"]["host"];
+                $mail->Port         = 587;
+                $mail->Username     = $smtpInfo["SMTP"]["username"];
+                $mail->Password     = $smtpInfo["SMTP"]["passwd"];
                 
-            //     // Recipient
-            //     $mail->setFrom($emailVerify, 'Verify');
-            //     $mail->addAddress('carsgonzales@verify.com', 'Joan González');
-            //     // $mail->addReplyTo($emailVerify);
+                $mail->setFrom('carsgonzales@verify.com', 'Verify');
+                $mail->addAddress($emailVerify, $nombre);
                     
+                $mail->isHTML(true);
+                $mail->Subject      = "CarsGonzalez -> Verify: " . $nombre;
+                $mail->Body         = 'Para verificar el usuario: ' . $nombre . ' Pulse aqui: ' . 'http://localhost/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_AngularJS/#/verify/' . $tokenEmail;
                 
-            //     // Content
-            //     $mail->isHTML(true);
-            //     $mail->Subject      = "Contact US: " . $nombre;
-            //     $mail->Body         = 'Este es el mensaje de verificacion';
-                
-            //     $mail->send();
+                $mail->send();
 
-            //     return "Mensaje enviado";
-            // } catch (Exception $e) {
-            //     return "Message could not be sent. Mail error: {$mail->ErrorInfo}";
-            // }
+                return "Mensaje enviado";
+            } catch (Exception $e) {
+                return "Message could not be sent. Mail error: {$mail->ErrorInfo}";
+            }
         }
 
     }

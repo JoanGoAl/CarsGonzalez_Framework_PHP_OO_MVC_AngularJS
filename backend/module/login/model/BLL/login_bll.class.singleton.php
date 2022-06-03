@@ -41,6 +41,14 @@
 		public function validate_login_BLL($data) {
 			return $this -> dao -> select_validate_login($this -> db, $data);
 		}
+
+		public function get_tokenEmail_BLL($email) {
+			return $this -> dao -> select_tokenEmail($this -> db, $email);
+		}
+
+		public function set_statusUser_BLL($token_email) {
+			return $this -> dao -> update_statusUser($this -> db, $token_email);
+		}
     }
 
 ?>

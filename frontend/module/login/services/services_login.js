@@ -61,25 +61,24 @@ app.factory('services_login', ['services', '$rootScope', 'toastr', function(serv
         services.post('login', 'validate_register', data)
             .then(function(response) {
                     info = response.replace(/['"]+/g, '')
-                    info == "user_exist" ? $rootScope.error_name_register = "Usuario no disponible" : $rootScope.error_name_register = "";
-                    info == "email_exist" ? $rootScope.error_email_register = "Correo no disponible" : $rootScope.error_email_register = "";
-                    info == "both_exist" ? $rootScope.error_name_register = "Usuario y correo no disponibles" : $rootScope.error_name_register = "";
+                    info == "user_exist" ? $rootScope.error_name_register = "Usuario no disponible" : $rootScope.error_name_register = " ";
+                    info == "email_exist" ? $rootScope.error_email_register = "Correo no disponible" : $rootScope.error_email_register = " ";
+                    info == "both_exist" ? $rootScope.error_name_register = "Usuario y correo no disponibles" : $rootScope.error_name_register = " ";
 
                     if (info == "all_ok") {
                         services.post('login', 'register', data)
                             .then(function(response) {
                                     nombre = response.replace(/['"]+/g, '')
-                                    toastr.success('Bienvenido ' + nombre + ': Usuario registrado correctamente, compruebe su correo para la verificación');
 
                                     let infoMail = {
-                                            'name': nombre,
-                                            'email': data.email
-                                        }
-                                        // console.log(infoMail);
+                                        'email': data.email,
+                                        'name': nombre
+                                    }
 
                                     services.post('login', 'verifyRegister', infoMail)
                                         .then(function(response) {
                                             console.log(response);
+                                            if (response == '"Mensaje enviado"') toastr.success('Mensaje de verificacion enviado al correo ' + data.email);
                                         }, function(error) {
                                             console.log(error);
                                         });

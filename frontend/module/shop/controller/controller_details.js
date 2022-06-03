@@ -9,8 +9,6 @@ app.controller('controller_details', function($scope, $rootScope, $routeParams, 
 
             data.length < 4 ? $scope.seeMore = true : $scope.seeMore = false
 
-            console.log($scope.numOfRelated + " " + data.length);
-
             $scope.moreRelated = function() {
                 $scope.numOfRelated -= 3
                 $scope.RelatedCar = data.slice($scope.numOfRelated)

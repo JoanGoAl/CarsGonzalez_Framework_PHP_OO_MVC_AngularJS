@@ -39,6 +39,14 @@
             return $this -> bll -> validate_login_BLL($data);
         }
 
+        public function get_tokenEmail($email) {
+            return $this -> bll -> get_tokenEmail_BLL($email);
+        }
+
+        public function set_statusUser($token_email) {
+            return $this -> bll -> set_statusUser_BLL($token_email);
+        }
+
     }
 
 ?>

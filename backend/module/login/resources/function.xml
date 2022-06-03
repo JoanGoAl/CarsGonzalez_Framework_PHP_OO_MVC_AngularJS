@@ -29,7 +29,11 @@
         <uri>validate_login</uri>
     </function>
     <function>
-        <name>send_verification_email</name>
-        <uri>send_verification_email</uri>
+        <name>verifyRegister</name>
+        <uri>verifyRegister</uri>
+    </function>
+    <function>
+        <name>changeStatusUser</name>
+        <uri>changeStatusUser</uri>
     </function>
 </functions>

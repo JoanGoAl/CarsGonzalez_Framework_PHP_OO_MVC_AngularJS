@@ -11,18 +11,18 @@ app.controller('controller_login', function($scope, $rootScope, toastr, services
 
     $scope.register = () => {
 
-        $scope.nameRegister == undefined ? $rootScope.error_name_register = "Tienes que introducir un usuario" : $rootScope.error_name_register = "";
-        $scope.emailRegister == undefined ? $rootScope.error_email_register = "Tienes que introducir un correo" : $rootScope.error_email_register = "";
-        $scope.passwdRegister == undefined ? $rootScope.error_password_register = "Tienes que introducir una contraseña" : $rootScope.error_password_register = "";
-        $scope.passwd2Register == undefined ? $rootScope.error_repeat_password_register = "Tienes que repetir la contraseña" : $rootScope.error_repeat_password_register = "";
+        $scope.nameRegister == undefined ? $rootScope.error_name_register = "Tienes que introducir un usuario" : $rootScope.error_name_register = " ";
+        $scope.emailRegister == undefined ? $rootScope.error_email_register = "Tienes que introducir un correo" : $rootScope.error_email_register = " ";
+        $scope.passwdRegister == undefined ? $rootScope.error_password_register = "Tienes que introducir una contraseña" : $rootScope.error_password_register = " ";
+        $scope.passwd2Register == undefined ? $rootScope.error_repeat_password_register = "Tienes que repetir la contraseña" : $rootScope.error_repeat_password_register = " ";
         if ($scope.nameRegister != undefined && $scope.passwdRegister != undefined && $scope.emailRegister != undefined && $scope.passwd2Register != undefined) {
 
-            $scope.passwdRegister != $scope.passwd2Register ? $rootScope.error_repeat_password_register = "Las contraseñas no coinciden" : $rootScope.error_repeat_password_register = "";
+            $scope.passwdRegister != $scope.passwd2Register ? $rootScope.error_repeat_password_register = "Las contraseñas no coinciden" : $rootScope.error_repeat_password_register = " ";
 
             if ($scope.passwdRegister != $scope.passwd2Register) {
                 $rootScope.error_repeat_password_register = "Las contraseñas no coinciden";
             } else {
-                $rootScope.error_repeat_password_register = "";
+                $rootScope.error_repeat_password_register = " ";
                 let data = {
                     'name': $scope.nameRegister,
                     'email': $scope.emailRegister,
@@ -33,4 +33,5 @@ app.controller('controller_login', function($scope, $rootScope, toastr, services
             }
         }
     }
+
 });

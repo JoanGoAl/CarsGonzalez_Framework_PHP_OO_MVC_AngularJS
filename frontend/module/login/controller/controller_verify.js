@@ -1,5 +1,5 @@
-app.controller('controller_verify', function($scope, $rootScope, toastr, $routeParams) {
+app.controller('controller_verify', function($scope, $rootScope, toastr, $routeParams, services_verify) {
 
-    console.log($routeParams.token);
+    services_verify.verify($routeParams.token)
 
 });

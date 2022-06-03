@@ -67,7 +67,7 @@
                 $avatar = "https://api.multiavatar.com/". $data['name'] .".svg";
 
                 $sql = "INSERT INTO `user`(`id_user`, `name_user`, `email_user`, `avatar_user`, `passwd_user`, `type_user`, `status_user`, `token_email`) 
-                    VALUES ('". $idUser ."', '" .$data['name'] ."','" .$data['email'] ."', '$avatar','$hashed_pass','default','false', '" . common::generate_token_secure(21) . "')";
+                    VALUES ('". $idUser ."', '" .$data['name'] ."','" .$data['email'] ."', '$avatar','$hashed_pass','default','false', '" . common::generate_token_secure(45) . "')";
 
                 $db -> ejecutar($sql);
                 return $data['name'];
@@ -109,6 +109,26 @@
             } else {  
                 return "passwd_not_match"; 
             }
+        
+        }
+        public function select_tokenEmail($db, $email) {
+            $sql = "SELECT `token_email` FROM `user` WHERE email_user = '$email'";
+
+            $stmt = $db -> ejecutar($sql);
+            return $db -> listar($stmt);
+        }
+
+        public function update_statusUser($db, $token_email) {
+            $sql = "UPDATE `user` SET `status_user` = 'true' WHERE `token_email` = '$token_email'";
+
+            $stmt = $db -> ejecutar($sql);
+
+            if ($stmt == true) {
+                return "_verify";
+            } else {
+                return "error";
+            }
+
         }
     }
 
