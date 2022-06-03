@@ -5,8 +5,11 @@ app.factory('services_contact', ['services', '$rootScope', 'toastr', function(se
     function sendEmail(data) {
         services.post('contact', 'sendinfo', data)
             .then(function(response) {
-                // toastr.success(response);
-                console.log(response);
+                if (response == '"Mensaje enviado"') {
+                    toastr.success('Mensaje enviado');
+                } else {
+                    toastr.error('Mensaje no enviado, compruebe los datos');
+                }
             }, function(error) {
                 console.log(error);
             });

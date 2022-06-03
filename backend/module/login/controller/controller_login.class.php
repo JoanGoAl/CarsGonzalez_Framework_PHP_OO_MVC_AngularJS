@@ -12,6 +12,11 @@
         function register() {
             echo json_encode(common::load_model('login_model', 'register', $_POST));
         }
+
+        function verifyRegister() {
+            // include "utils/mail.inc.php";
+            echo json_encode(Mail::verify($_POST['name'], $_POST['email']));
+        }
         
         function validate_login() {
             echo json_encode(common::load_model('login_model', 'validate_login', $_POST));

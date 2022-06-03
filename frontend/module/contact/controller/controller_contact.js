@@ -5,7 +5,7 @@ app.controller('controller_contact', function($scope, toastr, services_contact) 
         } else {
             let email = { 'name': $scope.full_name, 'email': $scope.user_email, 'message': $scope.email_message };
 
-            services_contact.sendEmail(email);
+            services_contact.sendEmail(email)
         }
     }
 });

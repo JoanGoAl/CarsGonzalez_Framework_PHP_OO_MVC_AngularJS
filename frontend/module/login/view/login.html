@@ -17,16 +17,16 @@
         <div class="signup">
             <form class="form-signup" id="form-signup"><label for="chk" aria-hidden="">Register</label>
                 <div id="container-register">
-                    <input type="text" name="name" placeholder="User name" required="" id="name-register" style="height: 30px;">
-                    <span id="error_name" class="error"></span>
-                    <input type="email" name="email" placeholder="Email" required="" id="email-register" style="height: 30px;">
-                    <span id="error_email" class="error"></span>
-                    <input type="password" name="passwd" placeholder="Password" required="" id="passwd-register" style="height: 30px;">
-                    <span id="error_passwd" class="error"></span>
-                    <input type="password" name="passwd2" placeholder="Repeat password" required="" id="passwd2-register" style="height: 30px;">
-                    <span id="error_passwd2" class="error"></span>
+                    <input type="text" ng-model="nameRegister" placeholder="User name" required="" id="name-register" style="height: 30px;">
+                    <span id="error_name" class="error">{{error_name_register}}</span>
+                    <input type="email" ng-model="emailRegister" placeholder="Email" required="" id="email-register" style="height: 30px;">
+                    <span id="error_email" class="error">{{error_email_register}}</span>
+                    <input type="password" ng-model="passwdRegister" placeholder="Password" required="" id="passwd-register" style="height: 30px;">
+                    <span id="error_passwd" class="error">{{error_password_register}}</span>
+                    <input type="password" ng-model="passwd2Register" placeholder="Repeat password" required="" id="passwd2-register" style="height: 30px;">
+                    <span id="error_passwd2" class="error">{{error_repeat_password_register}}</span>
                 </div>
-                <input id="register-butt" type="button" value="Register"></form>
+                <input id="register-butt" type="button" value="Register" ng-click="register()"></form>
         </div>
     </div>
 </div>

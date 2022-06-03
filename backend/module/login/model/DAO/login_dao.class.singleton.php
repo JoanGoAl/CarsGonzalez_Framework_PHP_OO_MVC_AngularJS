@@ -48,15 +48,30 @@
         }
 
         public function insert_register($db, $data) {
-            $hashed_pass = password_hash($data['passwd'], PASSWORD_DEFAULT, ['cost' => 12]);
+            $sql = "SELECT * FROM user u
+            WHERE u.name_user = '".$data['name']."'";
 
-            $avatar = "https://api.multiavatar.com/". $data['name'] .".svg";
+            $res = $db -> listar($db -> ejecutar($sql));
 
-            $sql = "INSERT INTO `user`(`name_user`, `email_user`, `avatar_user`, `passwd_user`, `type_user`, `status_user`) 
-                VALUES ('" .$data['name'] ."','" .$data['email'] ."', '$avatar','$hashed_pass','default','false')";
+            if (empty($res[0])) {
+                empty($data['passwd']) ? $hashed_pass = null : $hashed_pass = password_hash($data['passwd'], PASSWORD_DEFAULT, ['cost' => 12]);
+                empty($data['email']) ? $data['email'] = null : $data['email'] = $data['email'];
 
-            $db -> ejecutar($sql);
-            return $data['name'];
+
+                if (array_key_exists('idUser', $data)) {
+                    $idUser = $data['idUser'];
+                } else {
+                    $idUser = common::generate_token_secure(21);
+                }
+
+                $avatar = "https://api.multiavatar.com/". $data['name'] .".svg";
+
+                $sql = "INSERT INTO `user`(`id_user`, `name_user`, `email_user`, `avatar_user`, `passwd_user`, `type_user`, `status_user`, `token_email`) 
+                    VALUES ('". $idUser ."', '" .$data['name'] ."','" .$data['email'] ."', '$avatar','$hashed_pass','default','false', '" . common::generate_token_secure(21) . "')";
+
+                $db -> ejecutar($sql);
+                return $data['name'];
+            }
         }
 
         public function select_login($db, $name) {

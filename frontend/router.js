@@ -39,6 +39,10 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: "frontend/module/login/view/login.html",
             css: ["https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap", "frontend/view/css/login.css"],
             controller: "controller_login"
+        }).when("/verify/:token", {
+            templateUrl: "frontend/module/login/view/login.html",
+            css: ["https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap", "frontend/view/css/login.css"],
+            controller: "controller_verify"
         }).otherwise("/home", {
             redirectTo: '/home'
         });
@@ -116,6 +120,8 @@ app.run(function($rootScope, services, services_search, services_login) {
 
 
         $rootScope.citySearch = undefined
+
+
     }
 
 });
