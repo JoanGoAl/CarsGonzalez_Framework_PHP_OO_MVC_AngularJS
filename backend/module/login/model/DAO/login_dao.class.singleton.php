@@ -71,6 +71,8 @@
 
                 $db -> ejecutar($sql);
                 return $data['name'];
+            } else {
+                return "user_exist";
             }
         }
 

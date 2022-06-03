@@ -16,7 +16,7 @@
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide m-slide__item" ng-repeat="item in carPhotos">
                                             <div class="m-card">
-                                                <div class="m-card__header" style="background-image: url('backend/{{item}}');">
+                                                <div class="m-card__header" style="background-image: url('frontend/{{item}}');">
                                                 </div>
                                             </div>
                                         </div>
@@ -65,7 +65,7 @@
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin" ng-repeat="item in RelatedCar">
                 <div class="brand_box" id="1">
                     <div class="containerDet" id="item.id_car" ng-click="loadDetails()">
-                        <img src="backend/{{item.photo_car}}">
+                        <img src="frontend/{{item.photo_car}}">
                         <h3>{{item.name_brand}} {{item.name_model}}</h3>
                         <span>{{item.price}}</span>
                     </div>

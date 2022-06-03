@@ -54,7 +54,7 @@ app.factory('services_details', ['services', '$rootScope', 'toastr', function(se
 
             let popup = new mapboxgl.Popup({ closeOnClick: true })
                 .setHTML(
-                    '<p>' + info.name_brand + ' ' + info.name_model + '</p><img class="redirectPopup" src="backend/' + info.photo_car + '" alt=""><a class="popupRedirect"'
+                    '<p>' + info.name_brand + ' ' + info.name_model + '</p><img class="redirectPopup" src="frontend/' + info.photo_car + '" alt=""><a class="popupRedirect"'
                 )
 
             new mapboxgl.Marker({
