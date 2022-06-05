@@ -43,6 +43,12 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: "frontend/module/login/view/login.html",
             css: ["https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap", "frontend/view/css/login.css"],
             controller: "controller_verify"
+        }).when("/recover", {
+            templateUrl: "frontend/module/login/view/recover.html",
+            controller: "controller_login"
+        }).when("/changepw/:token", {
+            templateUrl: "frontend/module/login/view/recover.html",
+            controller: "controller_login"
         }).otherwise("/home", {
             redirectTo: '/home'
         });

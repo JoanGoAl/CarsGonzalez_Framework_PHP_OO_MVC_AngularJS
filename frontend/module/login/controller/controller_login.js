@@ -1,4 +1,4 @@
-app.controller('controller_login', function($scope, $rootScope, toastr, services_login) {
+app.controller('controller_login', function($scope, $rootScope, toastr, services_login, $routeParams) {
 
     $scope.login = () => {
         $scope.nameLogin == undefined ? $scope.error_name_login = "Tienes que introducir un usuario" : $scope.error_name_login = "";
@@ -34,69 +34,13 @@ app.controller('controller_login', function($scope, $rootScope, toastr, services
         }
     }
 
+    $scope.sendEmailRecover = () => {
+        services_login.recover($scope.recoverEmail)
+    }
+
     // Mirar perque no funciona el auth controler
-
-    // let webAuth = new auth0.WebAuth({
-    //     domain: 'joangoal.eu.auth0.com',
-    //     clientID: '4R7dzhd5tvOugxpujfAriHYNOirVjtpI',
-    //     redirectUri: 'http://localhost/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_AngularJS/#/login',
-    //     responseType: 'token id_token',
-    //     scope: 'openid profile email',
-    //     leeway: 60
-    // })
-
-    // $scope.googleLogin = () => {
-    //     webAuth.authorize({
-    //         connection: 'google-oauth2'
-    //     })
-    // }
-
-    // function socialLogin() {
-    //     webAuth.parseHash((error, authResult) => {
-    //         if (authResult && authResult.accessToken && authResult.idToken) {
-    //             window.location.hash = '';
-    //             setSessionExpiration(authResult)
-
-    //             let user = {
-    //                 idUser: authResult.idTokenPayload.sub.split('|')[1],
-    //                 name: authResult.idTokenPayload.nickname,
-    //                 email: authResult.idTokenPayload.email
-    //             }
-
-    //             services.post('login', 'register', user)
-    //                 .then(function(response) {
-    //                         console.log(response);
-    //                         // if (response == '"user_exist') {
-    //                         //     services.post('login', 'login', user)
-    //                         //         .then(function(response) {
-    //                         //                 localStorage.setItem('token', JSON.stringify(response))
-    //                         //                     // window.location.href = '#/home'
-    //                         //             },
-    //                         //             function(error) {
-    //                         //                 console.log(error);
-    //                         //             });
-    //                         // }
-    //                     },
-    //                     function(error) {
-    //                         console.log(error);
-    //                     });
-
-    //         } else if (error) {
-    //             console.log(error);
-    //         }
-    //     })
-    // }
-
-    // function setSessionExpiration(authResult) {
-    //     let expires_at = JSON.stringify(
-    //         authResult.expiresIn * 1000 + new Date().getTime()
-    //     );
-
-    //     localStorage.setItem('access_token', authResult.accessToken);
-    //     localStorage.setItem('id_token', authResult.idToken);
-    //     localStorage.setItem('expires_at', expires_at);
-    // }
-
-    // socialLogin()
+    $scope.socialLogin = function() {
+        services_login.social_login()
+    }
 
 });

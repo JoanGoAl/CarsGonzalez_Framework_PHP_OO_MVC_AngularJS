@@ -36,4 +36,8 @@
         <name>changeStatusUser</name>
         <uri>changeStatusUser</uri>
     </function>
+    <function>
+        <name>recoverPasswd</name>
+        <uri>recoverPasswd</uri>
+    </function>
 </functions>

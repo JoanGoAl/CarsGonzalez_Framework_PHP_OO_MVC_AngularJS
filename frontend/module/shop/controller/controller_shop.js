@@ -11,10 +11,11 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
 
             data.cars.length === 0 ? $scope.notFound = true : $scope.notFound = false
 
+            for (i in data.cars) data.cars[i].fav_class = 'no-like'
+
             if (localStorage.getItem('token')) {
 
                 services_shop.loadLikes(JSON.parse(localStorage.getItem('token')).replace(/['"]+/g, '')).then((infolikes => {
-                    console.log(infolikes);
 
                     for (i in data.cars) {
                         for (j in infolikes) {
@@ -25,11 +26,9 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
                     }
                 }))
 
-            } else {
-                $scope.statusLike = 'no-like'
             }
 
-            $scope.infocars = data.cars;
+            $rootScope.infocars = data.cars;
             $scope.pages = data.pages;
             $scope.actualpage = data.calcpag
             loadMap()
@@ -114,6 +113,18 @@ app.controller('controller_shop', function($scope, $rootScope, services_shop, ca
 
     $scope.loadDetails = function() {
         window.location = "#/details/" + this.item.id_car
+    }
+
+    $scope.clickFav = function() {
+
+        services_shop.setFav(this.item.id_car).then((data => {
+            if (data == 'eliminado') {
+                this.item.fav_class = "no-like"
+            } else if (data == 'insertado') {
+                this.item.fav_class = "like"
+            }
+        }))
+
     }
 
     loadCars()

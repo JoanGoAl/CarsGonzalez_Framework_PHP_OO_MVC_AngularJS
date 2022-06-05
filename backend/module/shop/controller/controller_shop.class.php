@@ -35,6 +35,7 @@
 
         function click_likes() {
             echo json_encode(common::load_model('shop_model', 'set_click_likes', $_POST));
+            // echo json_encode('holaaaa');
         }
 
         function user_likes() {

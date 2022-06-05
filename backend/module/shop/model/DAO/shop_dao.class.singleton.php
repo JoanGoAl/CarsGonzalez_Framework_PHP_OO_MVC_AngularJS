@@ -188,18 +188,20 @@
             $sql = "SELECT u.id_user FROM user u
                 WHERE u.name_user LIKE '". $name ."'";
 
+
             $user = $db -> listar($db -> ejecutar($sql));
-
+            
             $user = $user[0]['id_user'];
-            $idcar = $car['id_car'];
-
-            $sql = "SELECT `id_user`, `id_car` FROM `likes` WHERE `id_user` = $user AND `id_car` = $idcar";
-
+            $idcar = $car;
+            
+            $sql = "SELECT `id_user`, `id_car` FROM `likes` WHERE `id_user` = '$user' AND `id_car` = $idcar";
+            
             $comp = $db -> listar($db -> ejecutar($sql));
 
             if (empty($comp)) {
             
-                $sql = "INSERT INTO `likes`(`id_user`, `id_car`) VALUES ($user, ". $idcar .")";
+                $sql = "INSERT INTO `likes`(`id_user`, `id_car`) VALUES ('$user', ". $idcar .")";
+
                 $db -> ejecutar($sql);
     
                 return 'insertado';
@@ -221,7 +223,7 @@
             $user = $db -> listar($db -> ejecutar($sql));
             $user = $user[0]['id_user'];
 
-            $sql = "SELECT * FROM `likes` WHERE `id_user` = $user";
+            $sql = "SELECT * FROM `likes` WHERE `id_user` = '$user'";
             $res = $db -> listar($db -> ejecutar($sql));
 
             if (!empty($res)) {

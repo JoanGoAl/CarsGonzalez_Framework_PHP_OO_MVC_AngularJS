@@ -5,7 +5,8 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
         setFilters: setFilters,
         getCars: getCars,
         loadMap: loadMap,
-        loadLikes: loadLikes
+        loadLikes: loadLikes,
+        setFav: setFav
     }
     return service;
 
@@ -123,6 +124,27 @@ app.factory('services_shop', ['services', '$rootScope', 'toastr', function(servi
             }, function(error) {
                 console.log(error);
             });
+    }
+
+    function setFav(idcar) {
+        if (localStorage.getItem('token')) {
+            let data = {
+                token: JSON.parse(localStorage.getItem("token")).replace(/['"]+/g, ''),
+                car: idcar
+            }
+            return services.post('shop', 'click_likes', data)
+                .then(function(response) {
+                    console.log(response);
+                    return response.replace(/['"]+/g, '')
+                }, function(error) {
+                    console.log(error);
+                });
+        } else {
+            toastr.warning('Tienes que iniciar sesión para poder dar like')
+            window.location.href = '#/login'
+            return Promise.resolve('No logged')
+        }
+
     }
 
 }])

@@ -3,7 +3,9 @@ app.factory('services_login', ['services', '$rootScope', 'toastr', function(serv
         login: login,
         infoUser: infoUser,
         logout: logout,
-        register: register
+        register: register,
+        social_login: social_login,
+        recover: recover
     };
     return service;
 
@@ -92,5 +94,63 @@ app.factory('services_login', ['services', '$rootScope', 'toastr', function(serv
                     console.log(error);
                 });
 
+    }
+
+    function social_login() {
+        let webAuth = new auth0.WebAuth({
+            domain: 'joangoal.eu.auth0.com',
+            clientID: '4R7dzhd5tvOugxpujfAriHYNOirVjtpI',
+            redirectUri: 'http://localhost/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_AngularJS/#/login',
+            responseType: 'token id_token',
+            scope: 'openid profile email',
+            leeway: 60
+        })
+
+        webAuth.authorize({
+            connection: 'google-oauth2'
+        })
+
+        webAuth.parseHash((error, authResult) => {
+
+            if (authResult && authResult.accessToken && authResult.idToken) {
+                window.location.hash = '';
+                setSessionExpiration(authResult)
+
+                let user = {
+                    idUser: authResult.idTokenPayload.sub.split('|')[1],
+                    name: authResult.idTokenPayload.nickname,
+                    email: authResult.idTokenPayload.email
+                }
+
+                console.log(user);
+
+            } else if (error) {
+                console.log(error);
+            }
+        })
+
+
+        function setSessionExpiration(authResult) {
+            let expires_at = JSON.stringify(
+                authResult.expiresIn * 1000 + new Date().getTime()
+            );
+
+            localStorage.setItem('access_token', authResult.accessToken);
+            localStorage.setItem('id_token', authResult.idToken);
+            localStorage.setItem('expires_at', expires_at);
+        }
+
+
+    }
+
+    function recover(email) {
+        services.post('login', 'recoverPasswd', { email: email })
+            .then(function(response) {
+
+                console.log(response);
+
+            }, function(error) {
+                console.log(error);
+            });
     }
 }])
