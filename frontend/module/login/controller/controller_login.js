@@ -34,10 +34,6 @@ app.controller('controller_login', function($scope, $rootScope, toastr, services
         }
     }
 
-    $scope.sendEmailRecover = () => {
-        services_login.recover($scope.recoverEmail)
-    }
-
     // Mirar perque no funciona el auth controler
     $scope.socialLogin = function() {
         services_login.social_login()

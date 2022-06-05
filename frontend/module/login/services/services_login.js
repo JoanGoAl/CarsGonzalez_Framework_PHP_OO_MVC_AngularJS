@@ -5,7 +5,6 @@ app.factory('services_login', ['services', '$rootScope', 'toastr', function(serv
         logout: logout,
         register: register,
         social_login: social_login,
-        recover: recover
     };
     return service;
 
@@ -143,14 +142,4 @@ app.factory('services_login', ['services', '$rootScope', 'toastr', function(serv
 
     }
 
-    function recover(email) {
-        services.post('login', 'recoverPasswd', { email: email })
-            .then(function(response) {
-
-                console.log(response);
-
-            }, function(error) {
-                console.log(error);
-            });
-    }
 }])

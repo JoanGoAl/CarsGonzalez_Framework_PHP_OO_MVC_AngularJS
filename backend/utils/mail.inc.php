@@ -82,12 +82,12 @@
                 $mail->Username     = $smtpInfo["SMTP"]["username"];
                 $mail->Password     = $smtpInfo["SMTP"]["passwd"];
                 
-                $mail->setFrom('carsgonzales@verify.com', 'Verify');
+                $mail->setFrom('carsgonzales@recover.com', 'Recover');
                 $mail->addAddress($email);
                     
                 $mail->isHTML(true);
-                $mail->Subject      = "CarsGonzalez -> Recover";
-                $mail->Body         = 'Recover password email: ' . $email . ' Pulse aqui: ' . 'http://localhost/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_AngularJS/#/verify/' . $tokenEmail;
+                $mail->Subject      = "CarsGonzalez -> Recover: $email";
+                $mail->Body         = 'Recover password email: ' . $email . ' Pulse aqui: ' . 'http://localhost/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_AngularJS/#/changepw/' . $tokenEmail;
                 
                 $mail->send();
 

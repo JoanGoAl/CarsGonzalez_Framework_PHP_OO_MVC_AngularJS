@@ -45,10 +45,11 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: "controller_verify"
         }).when("/recover", {
             templateUrl: "frontend/module/login/view/recover.html",
-            controller: "controller_login"
+            controller: "controller_recover"
         }).when("/changepw/:token", {
             templateUrl: "frontend/module/login/view/recover.html",
-            controller: "controller_login"
+            css: "frontend/view/css/recover.css",
+            controller: "controller_recover"
         }).otherwise("/home", {
             redirectTo: '/home'
         });

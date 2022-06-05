@@ -47,6 +47,10 @@
             return $this -> bll -> set_statusUser_BLL($token_email);
         }
 
+        public function recoverPasswd($data) {
+            return $this -> bll -> recoverPasswd_BLL($data);
+        }
+
     }
 
 ?>

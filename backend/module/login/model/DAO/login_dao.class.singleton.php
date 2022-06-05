@@ -132,6 +132,18 @@
             }
 
         }
+
+        public function update_recoverPasswd($db, $data) {
+            $sql = "UPDATE `user` SET `passwd_user` = '". password_hash($data['passwd'], PASSWORD_DEFAULT, ['cost' => 12]) ."' WHERE `token_email` = '". $data['token'] ."'";
+
+            $stmt = $db -> ejecutar($sql);
+
+            if ($stmt == true) {
+                return "_recover";
+            } else {
+                return "error";
+            }
+        }
     }
 
 ?>

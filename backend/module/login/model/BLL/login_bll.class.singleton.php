@@ -49,6 +49,10 @@
 		public function set_statusUser_BLL($token_email) {
 			return $this -> dao -> update_statusUser($this -> db, $token_email);
 		}
+
+		public function recoverPasswd_BLL($data) {
+			return $this -> dao -> update_recoverPasswd($this -> db, $data);
+		}
     }
 
 ?>

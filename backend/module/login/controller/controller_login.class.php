@@ -19,10 +19,14 @@
             echo json_encode(Mail::verify($_POST['name'], $_POST['email'], json_encode($tokenEmail[0]['token_email'])));
         }
 
-        function recoverPasswd() {
+        function recoverEmail() {
             include "utils/mail.inc.php";
             $tokenEmail = common::load_model('login_model', 'get_tokenEmail', $_POST['email']);
             echo json_encode(Mail::recoverPasswd($_POST['email'], json_encode($tokenEmail[0]['token_email'])));
+        }
+
+        function recoverPasswd() {
+            echo json_encode(common::load_model('login_model', 'recoverPasswd', $_POST));
         }
             
         function changeStatusUser() {
