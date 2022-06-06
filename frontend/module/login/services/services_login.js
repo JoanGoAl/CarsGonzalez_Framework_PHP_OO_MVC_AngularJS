@@ -4,7 +4,6 @@ app.factory('services_login', ['services', '$rootScope', 'toastr', function(serv
         infoUser: infoUser,
         logout: logout,
         register: register,
-        social_login: social_login,
     };
     return service;
 
@@ -78,8 +77,11 @@ app.factory('services_login', ['services', '$rootScope', 'toastr', function(serv
 
                                     services.post('login', 'verifyRegister', infoMail)
                                         .then(function(response) {
-                                            console.log(response);
-                                            if (response == '"Mensaje enviado"') toastr.success('Mensaje de verificacion enviado al correo ' + data.email);
+                                            if (response == '"Mensaje enviado"') {
+                                                toastr.success('Mensaje de verificacion enviado al correo ' + data.email);
+                                            } else {
+                                                toastr.warning('Error al enviar el correo de verificacion');
+                                            }
                                         }, function(error) {
                                             console.log(error);
                                         });
@@ -92,53 +94,6 @@ app.factory('services_login', ['services', '$rootScope', 'toastr', function(serv
                 function(error) {
                     console.log(error);
                 });
-
-    }
-
-    function social_login() {
-        let webAuth = new auth0.WebAuth({
-            domain: 'joangoal.eu.auth0.com',
-            clientID: '4R7dzhd5tvOugxpujfAriHYNOirVjtpI',
-            redirectUri: 'http://localhost/CarsGonzalez&Framework/CarsGonzalez_Framework_PHP_OO_MVC_AngularJS/#/login',
-            responseType: 'token id_token',
-            scope: 'openid profile email',
-            leeway: 60
-        })
-
-        webAuth.authorize({
-            connection: 'google-oauth2'
-        })
-
-        webAuth.parseHash((error, authResult) => {
-
-            if (authResult && authResult.accessToken && authResult.idToken) {
-                window.location.hash = '';
-                setSessionExpiration(authResult)
-
-                let user = {
-                    idUser: authResult.idTokenPayload.sub.split('|')[1],
-                    name: authResult.idTokenPayload.nickname,
-                    email: authResult.idTokenPayload.email
-                }
-
-                console.log(user);
-
-            } else if (error) {
-                console.log(error);
-            }
-        })
-
-
-        function setSessionExpiration(authResult) {
-            let expires_at = JSON.stringify(
-                authResult.expiresIn * 1000 + new Date().getTime()
-            );
-
-            localStorage.setItem('access_token', authResult.accessToken);
-            localStorage.setItem('id_token', authResult.idToken);
-            localStorage.setItem('expires_at', expires_at);
-        }
-
 
     }
 

@@ -34,9 +34,4 @@ app.controller('controller_login', function($scope, $rootScope, toastr, services
         }
     }
 
-    // Mirar perque no funciona el auth controler
-    $scope.socialLogin = function() {
-        services_login.social_login()
-    }
-
 });

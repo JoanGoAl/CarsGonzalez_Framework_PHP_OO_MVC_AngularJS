@@ -208,7 +208,7 @@
     
             } else {
     
-                $sql = "DELETE FROM `likes` WHERE `id_user` = $user AND `id_car` = $idcar";
+                $sql = "DELETE FROM `likes` WHERE `id_user` = '$user' AND `id_car` = $idcar";
                 $db -> ejecutar($sql);
 
                 return 'eliminado';

@@ -56,18 +56,13 @@
             if (empty($res[0])) {
                 empty($data['passwd']) ? $hashed_pass = null : $hashed_pass = password_hash($data['passwd'], PASSWORD_DEFAULT, ['cost' => 12]);
                 empty($data['email']) ? $data['email'] = null : $data['email'] = $data['email'];
-
-
-                if (array_key_exists('idUser', $data)) {
-                    $idUser = $data['idUser'];
-                } else {
-                    $idUser = common::generate_token_secure(21);
-                }
-
-                $avatar = "https://api.multiavatar.com/". $data['name'] .".svg";
+                empty($data['avatar']) ? $avatar = "https://api.multiavatar.com/". $data['name'] .".svg" : $avatar = $data['avatar'];
+                array_key_exists('idUser', $data) ? $idUser = $data['idUser'] : $idUser = common::generate_token_secure(21);
+                array_key_exists('status', $data) ? $status = $data['status'] : $status = "false";
+                
 
                 $sql = "INSERT INTO `user`(`id_user`, `name_user`, `email_user`, `avatar_user`, `passwd_user`, `type_user`, `status_user`, `token_email`) 
-                    VALUES ('". $idUser ."', '" .$data['name'] ."','" .$data['email'] ."', '$avatar','$hashed_pass','default','false', '" . common::generate_token_secure(45) . "')";
+                    VALUES ('". $idUser ."', '" .$data['name'] ."','" .$data['email'] ."', '$avatar','$hashed_pass','default','$status', '" . common::generate_token_secure(45) . "')";
 
                 $db -> ejecutar($sql);
                 return $data['name'];
@@ -104,7 +99,7 @@
                 return "name_not_exist";
             } else if (password_verify($data['passwd'],$check_name[0]['passwd_user']) && $check_name[0]['status_user'] == 'true') {
                 return "all_ok";
-            } else if ($check_name[0]['status_user'] == 'false') {
+            } else if ($check_name[0]['status_user'] != 'true') {
                 return 'user_not_verify';
             } else if ($check_name) {
                 return "passwd_not_match";
@@ -143,6 +138,21 @@
             } else {
                 return "error";
             }
+        }
+
+        public function select_check_email($db, $email) {
+            $sql = "SELECT * FROM user u
+                WHERE u.email_user = '$email'";
+    
+            $stmt = $db -> ejecutar($sql);
+            $res = $db -> listar($stmt);
+            
+            if (empty($res[0])) {
+                return "email_not_exist";
+            } else {
+                return "all_ok";
+            }
+
         }
     }
 

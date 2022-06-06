@@ -6,16 +6,24 @@ app.factory('services_recover', ['services', '$rootScope', 'toastr', function(se
     return service;
 
     function recover(email) {
-        if (email != undefined) {
-            services.post('login', 'recoverEmail', { email: email })
+        if (email != undefined && email != '') {
+            services.post('login', 'checkEmail', { email: email })
                 .then(function(response) {
-                    if (response == '"Mensaje enviado"') {
-                        toastr.success('Mensaje enviado')
+                    if (response == '"email_not_exist"') {
+                        toastr.warning('El correo no esta registrado')
+                    } else {
+                        services.post('login', 'recoverEmail', { email: email })
+                            .then(function(response) {
+                                if (response == '"Mensaje enviado"') {
+                                    toastr.success('Mensaje enviado')
+                                }
+                            }, function(error) {
+                                console.log(error);
+                            });
                     }
-
-                }, function(error) {
-                    console.log(error);
-                });
+                })
+        } else {
+            toastr.warning('Tienes que introducir un correo')
         }
     }
 

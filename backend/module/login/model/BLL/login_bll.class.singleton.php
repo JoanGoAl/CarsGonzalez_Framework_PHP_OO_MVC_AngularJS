@@ -53,6 +53,10 @@
 		public function recoverPasswd_BLL($data) {
 			return $this -> dao -> update_recoverPasswd($this -> db, $data);
 		}
+
+		public function check_email_BLL($email)	{
+			return $this -> dao -> select_check_email($this -> db, $email);
+		}
     }
 
 ?>

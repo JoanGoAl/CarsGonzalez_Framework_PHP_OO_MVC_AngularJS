@@ -50,12 +50,25 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: "frontend/module/login/view/recover.html",
             css: "frontend/view/css/recover.css",
             controller: "controller_recover"
-        }).otherwise("/home", {
+        })
+        .otherwise("/home", {
             redirectTo: '/home'
         });
 }]);
 
-app.run(function($rootScope, services, services_search, services_login) {
+app.run(function($rootScope, services, services_search, services_login, services_auth0) {
+
+    services_auth0.infoAuth0();
+
+    let path = location.href
+
+    if (path.split('/')[5].split('=')[0] == '#access_token') {
+        services_auth0.social_login_info()
+    }
+
+    $rootScope.socialLogin = function() {
+        services_auth0.social_login_Google();
+    }
 
     if (localStorage.getItem('token')) {
         $rootScope.loginOrLogout = 'logout';

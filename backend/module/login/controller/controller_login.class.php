@@ -25,6 +25,10 @@
             echo json_encode(Mail::recoverPasswd($_POST['email'], json_encode($tokenEmail[0]['token_email'])));
         }
 
+        function checkEmail() {
+            echo json_encode(common::load_model('login_model', 'check_email', $_POST['email']));
+        }
+
         function recoverPasswd() {
             echo json_encode(common::load_model('login_model', 'recoverPasswd', $_POST));
         }

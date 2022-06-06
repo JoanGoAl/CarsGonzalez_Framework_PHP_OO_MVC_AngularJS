@@ -44,4 +44,8 @@
         <name>recoverPasswd</name>
         <uri>recoverPasswd</uri>
     </function>
+    <function>
+        <name>checkEmail</name>
+        <uri>checkEmail</uri>
+    </function>
 </functions>

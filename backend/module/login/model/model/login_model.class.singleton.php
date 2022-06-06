@@ -51,6 +51,10 @@
             return $this -> bll -> recoverPasswd_BLL($data);
         }
 
+        public function check_email($email) {
+            return $this -> bll -> check_email_BLL($email);
+        }
+
     }
 
 ?>
